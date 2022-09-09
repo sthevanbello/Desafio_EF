@@ -17,6 +17,10 @@ namespace Desafio_EF.Contexts
         public DbSet<Especialidade> Especialidade { get; set; }
         public DbSet<Consulta> Consulta { get; set; } // Classe de relacionamento entre Médico e Paciente
 
+        /// <summary>
+        /// Converter o Enum para String e salvar o nome do enum no banco
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
