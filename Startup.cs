@@ -1,4 +1,6 @@
 using Desafio_EF.Contexts;
+using Desafio_EF.Interfaces;
+using Desafio_EF.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -56,6 +58,11 @@ namespace Desafio_EF
                 var xmlArquivo = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlArquivo));
             });
+
+            // Injeção de dependência do DesafioContext
+            services.AddTransient<DesafioContext, DesafioContext>();
+
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
