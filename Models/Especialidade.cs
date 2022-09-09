@@ -6,6 +6,7 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Categoria { get; set; }
     }
 }

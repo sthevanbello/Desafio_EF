@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Desafio_EF.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Desafio_EF.Models
 {
@@ -6,6 +7,7 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Tipo { get; set; }
+        [Required]
+        public ETipoUsuario Tipo { get; set; }
     }
 }

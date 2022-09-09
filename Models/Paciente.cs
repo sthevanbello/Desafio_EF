@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,5 +19,6 @@ namespace Desafio_EF.Models
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
+        public ICollection<Consulta> Consultas { get; set; }
     }
 }

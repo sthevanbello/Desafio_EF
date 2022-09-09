@@ -11,6 +11,7 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public DateTime DataHora { get; set; }
         [Required]
         [ForeignKey("Medico")]
