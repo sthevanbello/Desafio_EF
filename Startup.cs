@@ -1,7 +1,9 @@
+using Desafio_EF.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,7 +11,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Desafio_EF
@@ -26,11 +30,31 @@ namespace Desafio_EF
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adicionar a a conexão com o banco aos serviços de configuração
+            // Recebe a string de conexão do arquivo appsettings.json
+            services.AddDbContext<DesafioContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DesafioEntityFramework")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            // Evita o erro de loop infinito em objetos relacionados
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Desafio_EF", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "Desafio_EF", 
+                    Version = "v1",
+                    Description = "Desafio do módulo de Entity Framework",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Repositório do desafio de Entity Framework",
+                        Url = new Uri("https://github.com/sthevanbello/Desafio_EF"),
+                    }
+                });
+
+                // Adiciona os comentários na documentação do Swagger
+                var xmlArquivo = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlArquivo));
             });
         }
 
