@@ -1,5 +1,6 @@
 ﻿using Desafio_EF.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace Desafio_EF.Contexts
 {
@@ -16,6 +17,12 @@ namespace Desafio_EF.Contexts
         public DbSet<Especialidade> Especialidade { get; set; }
         public DbSet<Consulta> Consulta { get; set; } // Classe de relacionamento entre Médico e Paciente
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<TipoUsuario>()
+                .Property(e => e.Tipo)
+                .HasConversion<string>();
+        }
     }
 }
