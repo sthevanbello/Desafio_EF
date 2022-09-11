@@ -63,6 +63,7 @@ namespace Desafio_EF
             services.AddTransient<DesafioContext, DesafioContext>();
 
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IPacienteRepository, PacienteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
