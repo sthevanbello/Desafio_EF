@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Desafio_EF.Models
 {
@@ -17,8 +18,11 @@ namespace Desafio_EF.Models
         [Required]
         [ForeignKey("TipoUsuario")]
         public int IdTipoUsuario { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public TipoUsuario TipoUsuario { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Medico> Medicos { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Paciente> Pacientes { get; set; }
 
     }
