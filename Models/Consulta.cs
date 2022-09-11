@@ -16,10 +16,10 @@ namespace Desafio_EF.Models
         [Required]
         [ForeignKey("Medico")]
         public int IdMedico { get; set; }
+        public Medico Medico { get; set; }
         [Required]
         [ForeignKey("Paciente")]
         public int IdPaciente { get; set; }
-        public Medico Medico { get; set; }
         public Paciente Paciente { get; set; }
     }
 }
