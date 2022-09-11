@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Desafio_EF.Models
 {
@@ -9,6 +8,5 @@ namespace Desafio_EF.Models
         public int Id { get; set; }
         [Required]
         public string Categoria { get; set; }
-        public ICollection<Medico> Medicos { get; set; }
     }
 }

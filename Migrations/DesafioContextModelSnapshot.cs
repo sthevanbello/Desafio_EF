@@ -180,13 +180,13 @@ namespace Desafio_EF.Migrations
             modelBuilder.Entity("Desafio_EF.Models.Medico", b =>
                 {
                     b.HasOne("Desafio_EF.Models.Especialidade", "Especialidade")
-                        .WithMany("Medicos")
+                        .WithMany()
                         .HasForeignKey("IdEspecialidade")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Desafio_EF.Models.Usuario", "Usuario")
-                        .WithMany("Medicos")
+                        .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -199,7 +199,7 @@ namespace Desafio_EF.Migrations
             modelBuilder.Entity("Desafio_EF.Models.Paciente", b =>
                 {
                     b.HasOne("Desafio_EF.Models.Usuario", "Usuario")
-                        .WithMany("Pacientes")
+                        .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -210,17 +210,12 @@ namespace Desafio_EF.Migrations
             modelBuilder.Entity("Desafio_EF.Models.Usuario", b =>
                 {
                     b.HasOne("Desafio_EF.Models.TipoUsuario", "TipoUsuario")
-                        .WithMany("Usuarios")
+                        .WithMany()
                         .HasForeignKey("IdTipoUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TipoUsuario");
-                });
-
-            modelBuilder.Entity("Desafio_EF.Models.Especialidade", b =>
-                {
-                    b.Navigation("Medicos");
                 });
 
             modelBuilder.Entity("Desafio_EF.Models.Medico", b =>
@@ -231,18 +226,6 @@ namespace Desafio_EF.Migrations
             modelBuilder.Entity("Desafio_EF.Models.Paciente", b =>
                 {
                     b.Navigation("Consultas");
-                });
-
-            modelBuilder.Entity("Desafio_EF.Models.TipoUsuario", b =>
-                {
-                    b.Navigation("Usuarios");
-                });
-
-            modelBuilder.Entity("Desafio_EF.Models.Usuario", b =>
-                {
-                    b.Navigation("Medicos");
-
-                    b.Navigation("Pacientes");
                 });
 #pragma warning restore 612, 618
         }
