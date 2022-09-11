@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Desafio_EF.Models
 {
@@ -16,10 +17,12 @@ namespace Desafio_EF.Models
         [Required]
         [ForeignKey("Medico")]
         public int IdMedico { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Medico Medico { get; set; }
         [Required]
         [ForeignKey("Paciente")]
         public int IdPaciente { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Paciente Paciente { get; set; }
     }
 }

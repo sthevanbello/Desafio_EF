@@ -117,7 +117,7 @@ namespace Desafio_EF.Controllers
 
                 _especialidadeRepository.AlterarParcialmente(patchEspecialidade, especialidade);
 
-                return Ok(new { msg = "Especialidade alterado", especialidade });
+                return Ok(new { msg = "Especialidade alterada", especialidade });
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace Desafio_EF.Controllers
         }
 
         /// <summary>
-        /// Alterar um especialidade a partir do Id fornecido
+        /// Alterar uma especialidade a partir do Id fornecido
         /// </summary>
         /// <param name="id">Id da especialidade</param>
         /// <param name="especialidade">Dados atualizados</param>
@@ -149,19 +149,19 @@ namespace Desafio_EF.Controllers
 
                 if (especialidadeRetorno is null)
                 {
-                    return NotFound(new { msg = "Especialidade não encontrado. Conferir o Id informado" });
+                    return NotFound(new { msg = "Especialidade não encontrada. Conferir o Id informado" });
                 }
 
                 _especialidadeRepository.Alterar(especialidade);
 
-                return Ok(new { msg = "Especialidade alterado", especialidade });
+                return Ok(new { msg = "Especialidade alterada", especialidade });
             }
             catch (Exception ex)
             {
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao alterar o especialidade",
+                    msg = "Falha ao alterar a especialidade",
                     ex.Message
                 });
             }
@@ -181,19 +181,19 @@ namespace Desafio_EF.Controllers
 
                 if (especialidadeRetorno is null)
                 {
-                    return NotFound(new { msg = "Especialidade não encontrado. Conferir o Id informado" });
+                    return NotFound(new { msg = "Especialidade não encontrada. Conferir o Id informado" });
                 }
 
                 _especialidadeRepository.Excluir(especialidadeRetorno);
 
-                return Ok(new { msg = "Especialidade excluído com sucesso" });
+                return Ok(new { msg = "Especialidade excluída com sucesso" });
             }
             catch (Exception ex)
             {
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir o especialidade",
+                    msg = "Falha ao excluir a especialidade",
                     ex.Message
                 });
             }
