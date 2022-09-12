@@ -67,7 +67,7 @@ namespace Desafio_EF.Controllers
         /// <summary>
         /// Exibir um usuário a partir do Id fornecido
         /// </summary>
-        /// <param name="id">Id da usuário</param>
+        /// <param name="id">Id do usuário</param>
         /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetByIdUsuario(int id)
@@ -132,7 +132,7 @@ namespace Desafio_EF.Controllers
         /// <summary>
         /// Alterar um usuário a partir do Id fornecido
         /// </summary>
-        /// <param name="id">Id da usuário</param>
+        /// <param name="id">Id do usuário</param>
         /// <param name="usuario">Dados atualizados</param>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -169,7 +169,7 @@ namespace Desafio_EF.Controllers
         /// <summary>
         /// Excluir usuário do banco de dados
         /// </summary>
-        /// <param name="id">Id da usuário a ser excluído</param>
+        /// <param name="id">Id do usuário a ser excluído</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteUsuario(int id)

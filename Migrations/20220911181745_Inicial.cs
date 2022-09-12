@@ -110,7 +110,7 @@ namespace Desafio_EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DataHora = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataHora = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     IdMedico = table.Column<int>(type: "int", nullable: false),
                     IdPaciente = table.Column<int>(type: "int", nullable: false)
                 },

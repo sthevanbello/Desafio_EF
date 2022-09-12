@@ -1,5 +1,4 @@
-﻿using Desafio_EF.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -10,7 +9,7 @@ namespace Desafio_EF.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public ETipoUsuario Tipo { get; set; }
+        public string Tipo { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Usuario> Usuarios { get; set; }
     }
