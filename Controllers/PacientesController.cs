@@ -66,7 +66,7 @@ namespace Desafio_EF.Controllers
         }
 
         /// <summary>
-        /// Exibir uma lista de usuários cadastrados no sistema
+        /// Exibir uma lista de pacientes e suas consultas cadastradas no sistema
         /// </summary>
         /// <returns></returns>
         [HttpGet("Consultas")]

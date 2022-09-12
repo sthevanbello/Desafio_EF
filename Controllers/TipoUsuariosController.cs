@@ -60,7 +60,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os tipos de usuários",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -87,7 +87,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir o tipo de usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -124,7 +124,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o tipo de usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -193,7 +193,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir o tipo de usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

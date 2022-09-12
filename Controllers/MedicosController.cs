@@ -1,5 +1,6 @@
 ﻿using Desafio_EF.Interfaces;
 using Desafio_EF.Models;
+using Desafio_EF.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +60,29 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os Médicos",
+                    ex.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Exibir uma lista de médicos e suas consultas cadastradas no sistema
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Consultas")]
+        public IActionResult GetAllMedicosComConsulta()
+        {
+            try
+            {
+                var pacientes = _medicoRepository.MedicosComConsultas();
+                return Ok(pacientes);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new
+                {
+                    msg = "Falha ao listar os médicos",
                     ex.Message
                 });
             }
