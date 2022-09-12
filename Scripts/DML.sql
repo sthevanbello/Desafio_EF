@@ -27,7 +27,7 @@ INSERT INTO Usuario(Nome, Email, IdTipoUsuario, Senha) /* Jogadores e seus dados
 
 		('Marge Simpson', 'marge@simpson', 2, 'marge1234'),
 		('Lisa Simpson', 'lisa@simpson', 2, 'lisa1234'),
-		('"Abe" Simpson', 'vovo@simpson', 2, 'vovo1234'),
+		('Abe Simpson', 'vovo@simpson', 2, 'vovo1234'),
 		('Apu Nahasapeemapetilon', 'apu@simpson', 2, 'apu1234'),
 		('Reverendo Timothy Lovejoy', 'reverendo@simpson', 2, 'reverendo1234');
 GO

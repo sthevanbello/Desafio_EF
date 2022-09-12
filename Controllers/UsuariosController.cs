@@ -63,6 +63,50 @@ namespace Desafio_EF.Controllers
                 });
             }
         }
+        /// <summary>
+        /// Exibir uma lista de usuários que são médicos cadastrados no sistema
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Medicos")]
+        public IActionResult GetAllUsuariosMedicos()
+        {
+            try
+            {
+                var usuarios = _usuarioRepository.GetUsuariosMedicos();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new
+                {
+                    msg = "Falha ao listar os usuários médicos",
+                    ex.Message
+                });
+            }
+        }
+        /// <summary>
+        /// Exibir uma lista de usuários que são médicos cadastrados no sistema
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Pacientes")]
+        public IActionResult GetAllUsuariosPacientes()
+        {
+            try
+            {
+                var usuarios = _usuarioRepository.GetUsuariosPacientes();
+                return Ok(usuarios);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new
+                {
+                    msg = "Falha ao listar os usuários médicos",
+                    ex.Message
+                });
+            }
+        }
 
         /// <summary>
         /// Exibir um usuário a partir do Id fornecido
