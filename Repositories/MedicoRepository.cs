@@ -16,7 +16,7 @@ namespace Desafio_EF.Repositories
             _context = desafioContext;
         }
 
-        public ICollection<Medico> MedicosComConsultas()
+        public ICollection<Medico> GetMedicosComConsultas()
         {
             var medicos = _context.Medico
                 .Include(e => e.Especialidade)

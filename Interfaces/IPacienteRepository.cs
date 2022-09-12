@@ -5,6 +5,6 @@ namespace Desafio_EF.Interfaces
 {
     public interface IPacienteRepository : IBaseRepository<Paciente>
     {
-        public ICollection<Paciente> PacienteComConsultas();
+        public ICollection<Paciente> GetPacienteComConsultas();
     }
 }

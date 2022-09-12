@@ -22,38 +22,38 @@ namespace Desafio_EF.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public void Alterar(T item)
+        public void Put(T item)
         {
             _dbSet.Update(item);
             _context.SaveChanges();
         }
 
-        public void AlterarParcialmente(JsonPatchDocument patchItem, T item)
+        public void Patch(JsonPatchDocument patchItem, T item)
         {
             patchItem.ApplyTo(item);
             _context.Entry(item).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public T BuscarPorId(int id)
+        public T GetById(int id)
         {
             return _dbSet.Find(id);
         }
 
-        public void Excluir(T item)
+        public void Delete(T item)
         {
             _dbSet.Remove(item);
             _context.SaveChanges();
         }
 
-        public T Inserir(T item)
+        public T Insert(T item)
         {
             var retorno = _dbSet.Add(item);
             _context.SaveChanges();
             return retorno.Entity;
         }
 
-        public ICollection<T> ListarTodos()
+        public ICollection<T> GetAll()
         {
             var query = _dbSet.AsQueryable();
             return query.ToList();
