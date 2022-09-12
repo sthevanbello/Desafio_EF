@@ -28,7 +28,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var consultaInserida = _consultaRepository.Inserir(consulta);
+                var consultaInserida = _consultaRepository.Insert(consulta);
                 return Ok(consultaInserida);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var consultas = _consultaRepository.ListarTodos();
+                var consultas = _consultaRepository.GetConsultasCompletas();
                 return Ok(consultas);
             }
             catch (Exception ex)
@@ -63,18 +63,17 @@ namespace Desafio_EF.Controllers
                 });
             }
         }
-
         /// <summary>
         /// Exibir uma consulta a partir do Id fornecido
         /// </summary>
         /// <param name="id">Id da consulta</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public IActionResult GetByIdConsulta(int id)
+        public IActionResult GetConsultaCompletaById(int id)
         {
             try
             {
-                var consulta = _consultaRepository.BuscarPorId(id);
+                var consulta = _consultaRepository.GetConsultaCompletaById(id);
                 if (consulta is null)
                 {
                     return NotFound(new { msg = "Consulta não foi encontrada. Verifique se o Id está correto" });
@@ -92,6 +91,7 @@ namespace Desafio_EF.Controllers
             }
         }
 
+
         /// <summary>
         /// Atualizar parte das informações da consulta
         /// </summary>
@@ -108,13 +108,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var consulta = _consultaRepository.BuscarPorId(id);
+                var consulta = _consultaRepository.GetById(id);
                 if (consulta is null)
                 {
                     return NotFound(new { msg = "Consulta não encontrada. Conferir o Id informado" });
                 }
 
-                _consultaRepository.AlterarParcialmente(patchConsulta, consulta);
+                _consultaRepository.Patch(patchConsulta, consulta);
 
                 return Ok(new { msg = "Consulta alterada", consulta });
             }
@@ -144,14 +144,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var consultaRetorno = _consultaRepository.BuscarPorId(id);
+                var consultaRetorno = _consultaRepository.GetById(id);
 
                 if (consultaRetorno is null)
                 {
                     return NotFound(new { msg = "Consulta não encontrado. Conferir o Id informado" });
                 }
 
-                _consultaRepository.Alterar(consulta);
+                _consultaRepository.Put(consulta);
 
                 return Ok(new { msg = "Consulta alterado", consulta });
             }
@@ -176,14 +176,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var consultaRetorno = _consultaRepository.BuscarPorId(id);
+                var consultaRetorno = _consultaRepository.GetById(id);
 
                 if (consultaRetorno is null)
                 {
                     return NotFound(new { msg = "Consulta não encontrado. Conferir o Id informado" });
                 }
 
-                _consultaRepository.Excluir(consultaRetorno);
+                _consultaRepository.Delete(consultaRetorno);
 
                 return Ok(new { msg = "Consulta excluído com sucesso" });
             }

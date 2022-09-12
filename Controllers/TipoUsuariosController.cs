@@ -29,7 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var tipoUsuarioInserido = _tipoUsuarioRepository.Inserir(tipoUsuario);
+                var tipoUsuarioInserido = _tipoUsuarioRepository.Insert(tipoUsuario);
                 return Ok(tipoUsuarioInserido);
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var tipoUsuarios = _tipoUsuarioRepository.ListarTodos();
+                var tipoUsuarios = _tipoUsuarioRepository.GetAll();
                 return Ok(tipoUsuarios);
             }
             catch (Exception ex)
@@ -75,7 +75,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var tipoUsuario = _tipoUsuarioRepository.BuscarPorId(id);
+                var tipoUsuario = _tipoUsuarioRepository.GetById(id);
                 if (tipoUsuario is null)
                 {
                     return NotFound(new { msg = "Tipo de usuário não foi encontrado. Verifique se o Id está correto" });
@@ -108,13 +108,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var usuario = _tipoUsuarioRepository.BuscarPorId(id);
+                var usuario = _tipoUsuarioRepository.GetById(id);
                 if (usuario is null)
                 {
                     return NotFound(new { msg = "Usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _tipoUsuarioRepository.AlterarParcialmente(patchTipoUsuario, usuario);
+                _tipoUsuarioRepository.Patch(patchTipoUsuario, usuario);
 
                 return Ok(new { msg = "Tipo de usuário alterado", usuario });
             }
@@ -144,14 +144,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var tipoUsuarioRetorno = _tipoUsuarioRepository.BuscarPorId(id);
+                var tipoUsuarioRetorno = _tipoUsuarioRepository.GetById(id);
 
                 if (tipoUsuarioRetorno is null)
                 {
                     return NotFound(new { msg = "Tipo de usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _tipoUsuarioRepository.Alterar(tipoUsuario);
+                _tipoUsuarioRepository.Put(tipoUsuario);
 
                 return Ok(new { msg = "Tipo de usuário alterado", tipoUsuario });
             }
@@ -176,14 +176,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var tipoUsuarioRetorno = _tipoUsuarioRepository.BuscarPorId(id);
+                var tipoUsuarioRetorno = _tipoUsuarioRepository.GetById(id);
 
                 if (tipoUsuarioRetorno is null)
                 {
                     return NotFound(new { msg = "Tipo de usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _tipoUsuarioRepository.Excluir(tipoUsuarioRetorno);
+                _tipoUsuarioRepository.Delete(tipoUsuarioRetorno);
 
                 return Ok(new { msg = "Tipo de usuário excluído com sucesso" });
             }

@@ -29,7 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacienteInserido = _pacienteRepository.Inserir(paciente);
+                var pacienteInserido = _pacienteRepository.Insert(paciente);
                 return Ok(pacienteInserido);
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacientes = _pacienteRepository.ListarTodos();
+                var pacientes = _pacienteRepository.GetAll();
                 return Ok(pacientes);
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacientes = _pacienteRepository.PacienteComConsultas();
+                var pacientes = _pacienteRepository.GetPacienteComConsultas();
                 return Ok(pacientes);
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var paciente = _pacienteRepository.BuscarPorId(id);
+                var paciente = _pacienteRepository.GetById(id);
                 if (paciente is null)
                 {
                     return NotFound(new { msg = "Paciente não foi encontrado. Verifique se o Id está correto" });
@@ -132,13 +132,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var paciente = _pacienteRepository.BuscarPorId(id);
+                var paciente = _pacienteRepository.GetById(id);
                 if (paciente is null)
                 {
                     return NotFound(new { msg = "Paciente não encontrado. Conferir o Id informado" });
                 }
 
-                _pacienteRepository.AlterarParcialmente(patchPaciente, paciente);
+                _pacienteRepository.Patch(patchPaciente, paciente);
 
                 return Ok(new { msg = "Paciente alterado", paciente });
             }
@@ -168,14 +168,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var pacienteRetorno = _pacienteRepository.BuscarPorId(id);
+                var pacienteRetorno = _pacienteRepository.GetById(id);
 
                 if (pacienteRetorno is null)
                 {
                     return NotFound(new { msg = "Paciente não encontrado. Conferir o Id informado" });
                 }
 
-                _pacienteRepository.Alterar(paciente);
+                _pacienteRepository.Put(paciente);
 
                 return Ok(new { msg = "Paciente alterado", paciente });
             }
@@ -200,14 +200,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacienteRetorno = _pacienteRepository.BuscarPorId(id);
+                var pacienteRetorno = _pacienteRepository.GetById(id);
 
                 if (pacienteRetorno is null)
                 {
                     return NotFound(new { msg = "Paciente não encontrado. Conferir o Id informado" });
                 }
 
-                _pacienteRepository.Excluir(pacienteRetorno);
+                _pacienteRepository.Delete(pacienteRetorno);
 
                 return Ok(new { msg = "Paciente excluído com sucesso" });
             }

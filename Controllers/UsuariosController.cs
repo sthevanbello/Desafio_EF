@@ -28,7 +28,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var usuarioInserido = _usuarioRepository.Inserir(usuario);
+                var usuarioInserido = _usuarioRepository.Insert(usuario);
                 return Ok(usuarioInserido);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var usuarios = _usuarioRepository.ListarTodos();
+                var usuarios = _usuarioRepository.GetAll();
                 return Ok(usuarios);
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var usuario = _usuarioRepository.BuscarPorId(id);
+                var usuario = _usuarioRepository.GetById(id);
                 if (usuario is null)
                 {
                     return NotFound(new { msg = "Usuário não foi encontrado. Verifique se o Id está correto" });
@@ -152,13 +152,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var usuario = _usuarioRepository.BuscarPorId(id);
+                var usuario = _usuarioRepository.GetById(id);
                 if (usuario is null)
                 {
                     return NotFound(new { msg = "Usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _usuarioRepository.AlterarParcialmente(patchUsuario, usuario);
+                _usuarioRepository.Patch(patchUsuario, usuario);
 
                 return Ok(new { msg = "Usuário alterado", usuario });
             }
@@ -188,14 +188,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var usuarioRetorno = _usuarioRepository.BuscarPorId(id);
+                var usuarioRetorno = _usuarioRepository.GetById(id);
 
                 if (usuarioRetorno is null)
                 {
                     return NotFound(new { msg = "Usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _usuarioRepository.Alterar(usuario);
+                _usuarioRepository.Put(usuario);
 
                 return Ok(new { msg = "Usuário alterado", usuario });
             }
@@ -220,14 +220,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var usuarioRetorno = _usuarioRepository.BuscarPorId(id);
+                var usuarioRetorno = _usuarioRepository.GetById(id);
 
                 if (usuarioRetorno is null)
                 {
                     return NotFound(new { msg = "Usuário não encontrado. Conferir o Id informado" });
                 }
 
-                _usuarioRepository.Excluir(usuarioRetorno);
+                _usuarioRepository.Delete(usuarioRetorno);
 
                 return Ok(new { msg = "Usuário excluído com sucesso" });
             }

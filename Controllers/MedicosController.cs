@@ -29,7 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var medicoInserido = _medicoRepository.Inserir(medico);
+                var medicoInserido = _medicoRepository.Insert(medico);
                 return Ok(medicoInserido);
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var Medicos = _medicoRepository.ListarTodos();
+                var Medicos = _medicoRepository.GetAll();
                 return Ok(Medicos);
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacientes = _medicoRepository.MedicosComConsultas();
+                var pacientes = _medicoRepository.GetMedicosComConsultas();
                 return Ok(pacientes);
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var medico = _medicoRepository.BuscarPorId(id);
+                var medico = _medicoRepository.GetById(id);
                 if (medico is null)
                 {
                     return NotFound(new { msg = "Médico não foi encontrado. Verifique se o Id está correto" });
@@ -132,13 +132,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var medico = _medicoRepository.BuscarPorId(id);
+                var medico = _medicoRepository.GetById(id);
                 if (medico is null)
                 {
                     return NotFound(new { msg = "Médico não encontrado. Conferir o Id informado" });
                 }
 
-                _medicoRepository.AlterarParcialmente(patchMedico, medico);
+                _medicoRepository.Patch(patchMedico, medico);
 
                 return Ok(new { msg = "Médico alterado", medico });
             }
@@ -168,14 +168,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var medicoRetorno = _medicoRepository.BuscarPorId(id);
+                var medicoRetorno = _medicoRepository.GetById(id);
 
                 if (medicoRetorno is null)
                 {
                     return NotFound(new { msg = "Médico não encontrado. Conferir o Id informado" });
                 }
 
-                _medicoRepository.Alterar(medico);
+                _medicoRepository.Put(medico);
 
                 return Ok(new { msg = "Médico alterado", medico });
             }
@@ -200,14 +200,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var medicoRetorno = _medicoRepository.BuscarPorId(id);
+                var medicoRetorno = _medicoRepository.GetById(id);
 
                 if (medicoRetorno is null)
                 {
                     return NotFound(new { msg = "Médico não encontrado. Conferir o Id informado" });
                 }
 
-                _medicoRepository.Excluir(medicoRetorno);
+                _medicoRepository.Delete(medicoRetorno);
 
                 return Ok(new { msg = "Médico excluído com sucesso" });
             }
