@@ -29,7 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var especialidadeInserida = _especialidadeRepository.Inserir(especialidade);
+                var especialidadeInserida = _especialidadeRepository.Insert(especialidade);
                 return Ok(especialidadeInserida);
             }
             catch (Exception ex)
@@ -42,6 +42,7 @@ namespace Desafio_EF.Controllers
                 });
             }
         }
+
         /// <summary>
         /// Exibir uma lista de especialidades cadastradas no banco de dados
         /// </summary>
@@ -51,7 +52,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var especialidades = _especialidadeRepository.ListarTodos();
+                var especialidades = _especialidadeRepository.GetAll();
                 return Ok(especialidades);
             }
             catch (Exception ex)
@@ -60,7 +61,30 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar as especialidades",
-                    ex.Message
+                    ex.InnerException.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Exibir uma lista de especialidades cadastradas no banco de dados
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Medicos")]
+        public IActionResult GetAllEspecialidadeComMedicos()
+        {
+            try
+            {
+                var especialidades = _especialidadeRepository.GetAllEspecialidadeComMedicos();
+                return Ok(especialidades);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new
+                {
+                    msg = "Falha ao listar as especialidades. Pode haver um(a) médico(a) associado(a) à especialidade",
+                    ex.InnerException.Message
                 });
             }
         }
@@ -71,11 +95,11 @@ namespace Desafio_EF.Controllers
         /// <param name="id">Id da especialidade</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public IActionResult GetByIdEspecialidade(int id)
+        public IActionResult GetEspecialidadeById(int id)
         {
             try
             {
-                var especialidade = _especialidadeRepository.BuscarPorId(id);
+                var especialidade = _especialidadeRepository.GetById(id);
                 if (especialidade is null)
                 {
                     return NotFound(new { msg = "Especialidade não foi encontrada. Verifique se o Id está correto" });
@@ -88,7 +112,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir a especialidade",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -109,13 +133,13 @@ namespace Desafio_EF.Controllers
                     return BadRequest(new { msg = "Insira os dados novos" });
                 }
 
-                var especialidade = _especialidadeRepository.BuscarPorId(id);
+                var especialidade = _especialidadeRepository.GetById(id);
                 if (especialidade is null)
                 {
                     return NotFound(new { msg = "Especialidade não encontrada. Conferir o Id informado" });
                 }
 
-                _especialidadeRepository.AlterarParcialmente(patchEspecialidade, especialidade);
+                _especialidadeRepository.Patch(patchEspecialidade, especialidade);
 
                 return Ok(new { msg = "Especialidade alterada", especialidade });
             }
@@ -125,7 +149,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar a especialidade",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -145,14 +169,14 @@ namespace Desafio_EF.Controllers
                 {
                     return BadRequest(new { msg = "Os ids não são correspondentes" });
                 }
-                var especialidadeRetorno = _especialidadeRepository.BuscarPorId(id);
+                var especialidadeRetorno = _especialidadeRepository.GetById(id);
 
                 if (especialidadeRetorno is null)
                 {
                     return NotFound(new { msg = "Especialidade não encontrada. Conferir o Id informado" });
                 }
 
-                _especialidadeRepository.Alterar(especialidade);
+                _especialidadeRepository.Put(especialidade);
 
                 return Ok(new { msg = "Especialidade alterada", especialidade });
             }
@@ -162,7 +186,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar a especialidade",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -177,14 +201,14 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var especialidadeRetorno = _especialidadeRepository.BuscarPorId(id);
+                var especialidadeRetorno = _especialidadeRepository.GetById(id);
 
                 if (especialidadeRetorno is null)
                 {
                     return NotFound(new { msg = "Especialidade não encontrada. Conferir o Id informado" });
                 }
 
-                _especialidadeRepository.Excluir(especialidadeRetorno);
+                _especialidadeRepository.Delete(especialidadeRetorno);
 
                 return Ok(new { msg = "Especialidade excluída com sucesso" });
             }
@@ -194,7 +218,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir a especialidade",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
