@@ -66,6 +66,29 @@ namespace Desafio_EF.Controllers
         }
 
         /// <summary>
+        /// Exibir uma lista de usuários cadastrados no sistema
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Consultas")]
+        public IActionResult GetAllPacientesComConsulta()
+        {
+            try
+            {
+                var pacientes = _pacienteRepository.PacienteComConsultas();
+                return Ok(pacientes);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new
+                {
+                    msg = "Falha ao listar os pacientes",
+                    ex.Message
+                });
+            }
+        }
+
+        /// <summary>
         /// Exibir um paciente a partir do Id fornecido
         /// </summary>
         /// <param name="id">Id do paciente</param>
