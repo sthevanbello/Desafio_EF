@@ -62,6 +62,7 @@ namespace Desafio_EF
             // Injeção de dependência do DesafioContext
             services.AddTransient<DesafioContext, DesafioContext>();
 
+            // Injeção de dependência dos repositórios
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IPacienteRepository, PacienteRepository>();
             services.AddTransient<IMedicoRepository, MedicoRepository>();

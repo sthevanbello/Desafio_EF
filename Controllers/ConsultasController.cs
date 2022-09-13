@@ -37,7 +37,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir uma consulta no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -59,7 +59,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar as consultas",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -86,7 +86,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir a consulta",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -124,7 +124,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar a consulta",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -161,7 +161,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o consulta",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -193,7 +193,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir a consulta",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

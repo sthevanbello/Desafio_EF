@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace Desafio_EF.Models
 {
+    /// <summary>
+    /// Model Medico
+    /// </summary>
     public class Medico
     {
         [Key]

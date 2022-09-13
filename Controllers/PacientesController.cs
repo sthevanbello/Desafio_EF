@@ -38,7 +38,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir um paciente no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -51,7 +51,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacientes = _pacienteRepository.GetAll();
+                var pacientes = _pacienteRepository.GetAllPacientes();
                 return Ok(pacientes);
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os pacientes",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -74,7 +74,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var pacientes = _pacienteRepository.GetPacienteComConsultas();
+                var pacientes = _pacienteRepository.GetPacientesComSonsultas();
                 return Ok(pacientes);
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os pacientes",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -98,7 +98,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var paciente = _pacienteRepository.GetById(id);
+                var paciente = _pacienteRepository.GetByIdPaciente(id);
                 if (paciente is null)
                 {
                     return NotFound(new { msg = "Paciente não foi encontrado. Verifique se o Id está correto" });
@@ -111,7 +111,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir o paciente",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -148,7 +148,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -185,7 +185,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o paciente",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -217,7 +217,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir o paciente",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

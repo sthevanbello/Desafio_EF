@@ -38,7 +38,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir um Tipo de usuário no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -161,7 +161,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o tipo de usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

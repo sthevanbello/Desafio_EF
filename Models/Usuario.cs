@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace Desafio_EF.Models
 {
+    /// <summary>
+    /// Model Usuario
+    /// </summary>
     public class Usuario
     {
         [Key]
@@ -18,11 +21,11 @@ namespace Desafio_EF.Models
         [Required]
         [ForeignKey("TipoUsuario")]
         public int IdTipoUsuario { get; set; }
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public TipoUsuario TipoUsuario { get; set; }
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Medico> Medicos { get; set; }
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Paciente> Pacientes { get; set; }
 
     }

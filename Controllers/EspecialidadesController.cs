@@ -38,7 +38,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir uma especialidade no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace Desafio_EF.Models
 {
+    /// <summary>
+    /// Model Especialidade
+    /// </summary>
     public class Especialidade
     {
         [Key]

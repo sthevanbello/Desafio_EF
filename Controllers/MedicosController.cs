@@ -38,7 +38,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir um Médico no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -51,7 +51,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var Medicos = _medicoRepository.GetAll();
+                var Medicos = _medicoRepository.GetAllMedicos();
                 return Ok(Medicos);
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os Médicos",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -83,7 +83,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os médicos",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -98,7 +98,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
-                var medico = _medicoRepository.GetById(id);
+                var medico = _medicoRepository.GetByIdMedico(id);
                 if (medico is null)
                 {
                     return NotFound(new { msg = "Médico não foi encontrado. Verifique se o Id está correto" });
@@ -111,7 +111,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir o Médico",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -148,7 +148,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o Médico",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -185,7 +185,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o Médico",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -217,7 +217,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir o Médico",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }

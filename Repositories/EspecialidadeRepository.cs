@@ -7,6 +7,10 @@ using System.Linq;
 
 namespace Desafio_EF.Repositories
 {
+    /// <summary>
+    /// Repositório de especialidades herdando um repositório base e implementando a Interface
+    /// <para>Há ainda um método Get personalizado</para>
+    /// </summary>
     public class EspecialidadeRepository : BaseRepository<Especialidade>, IEspecialidadeRepository
     {
         private readonly DesafioContext _context;
@@ -15,6 +19,10 @@ namespace Desafio_EF.Repositories
             _context = desafioContext;  
         }
 
+        /// <summary>
+        /// Exibir uma lista de especialidades com os médicos relacionados
+        /// </summary>
+        /// <returns>Retorna uma lista de especialidades com os médicos relacionados</returns>
         public ICollection<Especialidade> GetAllEspecialidadeComMedicos()
         {
             var especialidade = _context.Especialidade

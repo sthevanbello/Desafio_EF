@@ -37,7 +37,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao inserir um usuário no banco",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -59,7 +59,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os usuários",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -81,7 +81,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os usuários médicos",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -103,7 +103,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao listar os usuários médicos",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -131,7 +131,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao exibir o usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -168,7 +168,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -205,7 +205,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao alterar o usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
@@ -237,7 +237,7 @@ namespace Desafio_EF.Controllers
                 return BadRequest(new
                 {
                     msg = "Falha ao excluir o usuário",
-                    ex.Message
+                    ex.InnerException.Message
                 });
             }
         }
