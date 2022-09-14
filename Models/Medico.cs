@@ -15,11 +15,10 @@ namespace Desafio_EF.Models
         [Required]
         public string CRM { get; set; }
         
-        [Required]
+        [Required(ErrorMessage ="Informe o Id da especialidade")]
         [ForeignKey("Especialidade")]
         public int IdEspecialidade { get; set; }
         public Especialidade Especialidade { get; set; }
-
         [Required]
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }

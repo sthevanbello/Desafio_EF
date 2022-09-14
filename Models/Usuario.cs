@@ -12,13 +12,15 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "informe o seu nome")]
         public string Nome { get; set; }
-        [Required]
+        [Required(ErrorMessage = "informe o seu e-mail")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Insira um e-mail válido")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Informe a sua senha")]
+        [MinLength(6, ErrorMessage = "A senha deverá ter no mínimo 6 caracteres")]
         public string Senha { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe o tipo do usuário")]
         [ForeignKey("TipoUsuario")]
         public int IdTipoUsuario { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
