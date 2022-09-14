@@ -29,6 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
+                paciente.Usuario.IdTipoUsuario = 1; // Garante que o tipo de usuário será sempre 1, pois é paciente
                 var pacienteInserido = _pacienteRepository.Insert(paciente);
                 return Ok(pacienteInserido);
             }
