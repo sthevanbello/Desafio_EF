@@ -1,7 +1,7 @@
 ## Desafio Edusync/BRQ -  Módulo de construção de API com Entity Framework
 
 ### Objetivo
-#### Construção de uma API REST utilizando Asp.Net Core e ADO.Net sem utilizar template
+#### Construção de uma Web API REST utilizando Asp.Net Core e Entity Framework
 
 ### O que foi utilizado?
  - Linguagem C#
