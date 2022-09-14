@@ -29,6 +29,7 @@ namespace Desafio_EF.Controllers
         {
             try
             {
+                paciente.Usuario.IdTipoUsuario = 1; // Garante que o tipo de usuário será sempre 1, pois é paciente
                 var pacienteInserido = _pacienteRepository.Insert(paciente);
                 return Ok(pacienteInserido);
             }
@@ -216,7 +217,7 @@ namespace Desafio_EF.Controllers
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir o paciente",
+                    msg = "Falha ao excluir o paciente. Verifique se há utilização como Foreign Key de alguma consulta.",
                     ex.InnerException.Message
                 });
             }

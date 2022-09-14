@@ -148,12 +148,12 @@ namespace Desafio_EF.Controllers
 
                 if (consultaRetorno is null)
                 {
-                    return NotFound(new { msg = "Consulta não encontrado. Conferir o Id informado" });
+                    return NotFound(new { msg = "Consulta não encontrada. Conferir o Id informado" });
                 }
 
                 _consultaRepository.Put(consulta);
 
-                return Ok(new { msg = "Consulta alterado", consulta });
+                return Ok(new { msg = "Consulta alterada", consulta });
             }
             catch (Exception ex)
             {
@@ -180,12 +180,12 @@ namespace Desafio_EF.Controllers
 
                 if (consultaRetorno is null)
                 {
-                    return NotFound(new { msg = "Consulta não encontrado. Conferir o Id informado" });
+                    return NotFound(new { msg = "Consulta não encontrada. Conferir o Id informado" });
                 }
 
                 _consultaRepository.Delete(consultaRetorno);
 
-                return Ok(new { msg = "Consulta excluído com sucesso" });
+                return Ok(new { msg = "Consulta excluída com sucesso" });
             }
             catch (Exception ex)
             {

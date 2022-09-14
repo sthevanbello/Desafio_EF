@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -15,15 +16,16 @@ namespace Desafio_EF.Models
         [Required]
         public string CRM { get; set; }
         
-        [Required]
+        [Required(ErrorMessage ="Informe o Id da especialidade")]
         [ForeignKey("Especialidade")]
         public int IdEspecialidade { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public Especialidade Especialidade { get; set; }
-
         [Required]
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
+
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Consulta> Consultas { get; set; }
     }

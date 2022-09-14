@@ -13,11 +13,12 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe o número da carteirinha")]
+        [MinLength(6, ErrorMessage = "O número deverá ter no mínimo 6 caracteres")]
         public string Carteirinha { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe a data de nascimento")]
         public DateTime DataNascimento { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe se o usuário está ativo (true) ou inativo (false)")]
         public bool Ativo { get; set; }
         [Required]
         [ForeignKey("Usuario")]

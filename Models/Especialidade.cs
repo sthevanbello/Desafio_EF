@@ -11,7 +11,7 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe a categoria da especialidade")]
         public string Categoria { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<Medico> Medicos { get; set; }

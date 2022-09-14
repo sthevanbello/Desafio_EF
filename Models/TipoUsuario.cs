@@ -12,10 +12,10 @@ namespace Desafio_EF.Models
 
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe o tipo de usuário - Paciente ou Médico")]
         public string Tipo { get; set; }
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public ICollection<Usuario> Usuarios { get; set; }
     }
 }

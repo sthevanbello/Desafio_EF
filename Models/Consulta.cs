@@ -12,14 +12,14 @@ namespace Desafio_EF.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe a data da consulta")]
         public DateTime DataHora { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe o Id do Médico da consulta")]
         [ForeignKey("Medico")]
         public int IdMedico { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Medico Medico { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Informe o Id do paciente da consulta")]
         [ForeignKey("Paciente")]
         public int IdPaciente { get; set; }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

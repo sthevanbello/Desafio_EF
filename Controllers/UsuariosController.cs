@@ -236,7 +236,7 @@ namespace Desafio_EF.Controllers
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir o usuário",
+                    msg = "Falha ao excluir o usuário. Verifique se há utilização como Foreign Key de algum médico ou paciente",
                     ex.InnerException.Message
                 });
             }
