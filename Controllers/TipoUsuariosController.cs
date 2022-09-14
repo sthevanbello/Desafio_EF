@@ -192,7 +192,7 @@ namespace Desafio_EF.Controllers
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir o tipo de usuário",
+                    msg = "Falha ao excluir o tipo de usuário. Verifique se há utilização como Foreign Key de algum usuário",
                     ex.InnerException.Message
                 });
             }

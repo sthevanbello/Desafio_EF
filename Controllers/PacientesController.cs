@@ -217,7 +217,7 @@ namespace Desafio_EF.Controllers
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir o paciente",
+                    msg = "Falha ao excluir o paciente. Verifique se há utilização como Foreign Key de alguma consulta.",
                     ex.InnerException.Message
                 });
             }

@@ -217,7 +217,7 @@ namespace Desafio_EF.Controllers
 
                 return BadRequest(new
                 {
-                    msg = "Falha ao excluir a especialidade",
+                    msg = "Falha ao excluir a especialidade. Verifique se há utilização como Foreign Key de algum(a) médico(a)",
                     ex.InnerException.Message
                 });
             }
